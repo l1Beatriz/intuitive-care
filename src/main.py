@@ -11,6 +11,7 @@ anchor_tag = find_list.find_all('a', class_='internal-link' )
 
 for link in anchor_tag:
     href = link.attrs['href'] 
-    
+
+    # filter links ending in '.pdf'
     if(href.endswith('pdf')):
         print(f'\nLink do Anexo PDF: \n{link.attrs['href']}\n\n')
