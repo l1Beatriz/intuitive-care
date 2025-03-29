@@ -41,8 +41,11 @@ def download_files(url, folder):
     else:
         print(f'Falha ao realizar download do arquivo: {url}')
 
-
 def main():
+    if not os.path.exists(DOWNLOADS_FOLDER):
+        os.makedirs(DOWNLOADS_FOLDER)
+
+        
     get_pdf_links(URL)
 
 
