@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 URL = 'https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos'
+DOWNLOADS_FOLDER = 'downloads'
 
 def get_pdf_links(url):
     response = requests.get(url)
@@ -28,15 +29,17 @@ def get_pdf_links(url):
     
     return links
 
-# def download_files():
-    # global href
-    # for link in anchor_tag:
-        # href = link.attrs['href'] 
+def download_files(url, folder):
+    file_name = os.path.join(folder, url.split('/')[-1])
 
-        # filter links ending in '.pdf'
-        # if(href.endswith('pdf')):
-        #     url = requests.get(href)
-        #     print(url)
+    response = requests.get(url, stream=True)
+    if(response.status_code == 200):
+        with open(file_name, 'wb') as file:
+            for chunk in response.is_permanent_redirect(chunk_size=1024):
+                file.write(chunk)
+        print(f'Download feito: {url}')
+    else:
+        print(f'Falha ao realizar download do arquivo: {url}')
 
 
 def main():
