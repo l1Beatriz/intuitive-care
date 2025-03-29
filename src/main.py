@@ -25,7 +25,6 @@ def get_pdf_links(url):
             if href.startswith('/'):
                 href = f'https://www.gov.br{href}'
                 
-            # print(f'\nLink do Anexo PDF: {Fore.GREEN}\n{href}\n{Style.RESET_ALL}')
             links.append(href)
     
     return links
@@ -48,11 +47,16 @@ def download_files(url, folder):
 def zip_files(folder, output_file_name='anexos_pdf.zip'):
     zip_path = os.path.join(folder, output_file_name)
     
+    files = [f for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f))]
+
+    if output_file_name in files:
+        files.remove(output_file_name)
+
     with zipfile.ZipFile(zip_path, 'w') as zipf:
-        for file in os.listdir(folder):
+        for file in files:
             file_path = os.path.join(folder, file)
-            if os.path.isfile(file_path):
-                zipf.write(file_path, os.path.basename(file_path))
+            zipf.write(file_path, os.path.basename(file_path))
+               
 
     print(f'{Fore.MAGENTA}Arquivos compactados em: {Style.RESET_ALL}{zip_path}')
 
@@ -68,11 +72,11 @@ def process_downloads():
         for link in links_pdf:
             download_files(link, DOWNLOADS_FOLDER)
 
+        zip_files(DOWNLOADS_FOLDER)
+
     except Exception as error:
         print(f'{Fore.RED}Erro{Style.RESET_ALL}', error)
 
-
-    zip_files(DOWNLOADS_FOLDER)
 
 def main():
    process_downloads()
