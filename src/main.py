@@ -47,7 +47,7 @@ def main():
 
     try:
         links_pdf = get_pdf_links(URL)
-        print(f'Esses são os PDF disponíveis para download {len(links_pdf)}')
+        print(f'Encontrados {len(links_pdf)} arquivos PDF para download\n')
 
         if(not links_pdf):
             print('Nenhum arquivo disponível')
@@ -57,7 +57,7 @@ def main():
             download_files(link, DOWNLOADS_FOLDER)
 
     except Exception as error:
-        print(f'Erro', error)
+        print(f'Erro na aplicação:', error)
 
 
 if __name__ == "__main__":
