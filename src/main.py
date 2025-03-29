@@ -53,11 +53,10 @@ def zip_files(folder, output_file_name='anexos.zip'):
             file_path = os.path.join(folder, file)
             if os.path.isfile(file_path):
                 zipf.write(file_path, os.path.basename(file_path))
-                
+
     print(f'{Fore.MAGENTA}Arquivos compactados em:{Style.RESET_ALL}{zip_path}')
 
-
-def main():
+def process_downloads():
     try:
         links_pdf = get_pdf_links(URL)
         print(f'Encontrados {len(links_pdf)} arquivos PDF para download\n')
@@ -72,6 +71,9 @@ def main():
     except Exception as error:
         print(f'{Fore.RED}Erro{Style.RESET_ALL}', error)
 
+
+def main():
+   process_downloads()
 
 
 if __name__ == "__main__":
