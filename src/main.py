@@ -2,6 +2,7 @@ import os
 import zipfile
 import requests 
 from bs4 import BeautifulSoup
+from colorama import Fore, Back, Style
 
 URL = 'https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos'
 DOWNLOADS_FOLDER = 'downloads'
@@ -9,7 +10,7 @@ DOWNLOADS_FOLDER = 'downloads'
 def get_pdf_links(url):
     response = requests.get(url)
     if response.status_code != 200:
-        raise Exception(f'Erro ao acessar a URL: {url}')
+        raise Exception(f'{Fore.RED}Erro ao acessar a URL: {url}{Style.RESET_ALL}')
 
     soup = BeautifulSoup(response.text, 'html.parser')
     links = []
@@ -24,7 +25,7 @@ def get_pdf_links(url):
             if(href.startswith('/')):
                 href = f'https://www.gov.br{href}'
                 
-            print(f'\nLink do Anexo PDF: \n{href}\n')
+            print(f'\nLink do Anexo PDF: {Fore.GREEN}\n{href}\n{Style.RESET_ALL}')
             links.append(href)
     
     return links
@@ -39,7 +40,7 @@ def download_files(url, folder):
                 file.write(chunk)
         print(f'Download feito: {url}')
     else:
-        print(f'Falha ao realizar download do arquivo: {url}')
+        print(f'{Fore.RED}Falha ao realizar download do arquivo: {url}{Style.RESET_ALL}')
 
 def main():
     if not os.path.exists(DOWNLOADS_FOLDER):
@@ -57,7 +58,7 @@ def main():
             download_files(link, DOWNLOADS_FOLDER)
 
     except Exception as error:
-        print(f'Erro na aplicação:', error)
+        print(f'{Fore.RED}Erro{Style.RESET_ALL}', error)
 
 
 if __name__ == "__main__":
