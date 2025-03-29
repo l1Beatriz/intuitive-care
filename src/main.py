@@ -45,8 +45,19 @@ def main():
     if not os.path.exists(DOWNLOADS_FOLDER):
         os.makedirs(DOWNLOADS_FOLDER)
 
-        
-    get_pdf_links(URL)
+    try:
+        links_pdf = get_pdf_links(URL)
+        print(f'Esses são os PDF disponíveis para download {len(links_pdf)}')
+
+        if(not links_pdf):
+            print('Nenhum arquivo disponível')
+            return
+
+        for link in links_pdf:
+            download_files(link, DOWNLOADS_FOLDER)
+
+    except Exception as error:
+        print(f'Erro', error)
 
 
 if __name__ == "__main__":
