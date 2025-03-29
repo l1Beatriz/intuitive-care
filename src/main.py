@@ -45,16 +45,16 @@ def download_files(url, folder):
     else:
         print(f'{Fore.RED}Falha ao realizar download do arquivo: {url}{Style.RESET_ALL}')
 
-def zip_files(folder, output_file_name='anexos.zip'):
+def zip_files(folder, output_file_name='anexos_pdf.zip'):
     zip_path = os.path.join(folder, output_file_name)
     
     with zipfile.ZipFile(zip_path, 'w') as zipf:
-        for file in os.path.listdir(folder):
+        for file in os.listdir(folder):
             file_path = os.path.join(folder, file)
             if os.path.isfile(file_path):
                 zipf.write(file_path, os.path.basename(file_path))
 
-    print(f'{Fore.MAGENTA}Arquivos compactados em:{Style.RESET_ALL}{zip_path}')
+    print(f'{Fore.MAGENTA}Arquivos compactados em: {Style.RESET_ALL}{zip_path}')
 
 def process_downloads():
     try:
@@ -71,6 +71,8 @@ def process_downloads():
     except Exception as error:
         print(f'{Fore.RED}Erro{Style.RESET_ALL}', error)
 
+
+    zip_files(DOWNLOADS_FOLDER)
 
 def main():
    process_downloads()
