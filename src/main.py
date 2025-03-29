@@ -21,7 +21,7 @@ def get_pdf_links(url):
         href = link.get('href', '')
         text_link = link.get_text(strip=True)
         
-        if(href.endswith('.pdf') and any(key in text_link for key in keywords)):
+        if(href.endswith('.pdf') and any(key.lower() in text_link.lower() for key in keywords)):
             if(href.startswith('/')):
                 href = f'https://www.gov.br{href}'
                 
@@ -36,9 +36,9 @@ def download_files(url, folder):
     response = requests.get(url, stream=True)
     if(response.status_code == 200):
         with open(file_name, 'wb') as file:
-            for chunk in response.is_permanent_redirect(chunk_size=1024):
+            for chunk in response.iter_content(chunk_size=1024):
                 file.write(chunk)
-        print(f'Download feito: {url}')
+        print(f'{Fore.CYAN}Download concluído com sucesso do anexo:\n{Style.RESET_ALL}{url}\n')
     else:
         print(f'{Fore.RED}Falha ao realizar download do arquivo: {url}{Style.RESET_ALL}')
 
