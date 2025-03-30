@@ -76,11 +76,3 @@ def process_downloads():
 
     except Exception as error:
         print(f'{Fore.RED}Erro{Style.RESET_ALL}', error)
-
-
-# def main():
-#    process_downloads()
-
-
-# if __name__ == "__main__":
-#     main()
