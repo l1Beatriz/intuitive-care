@@ -8,12 +8,14 @@ from colorama import Fore, Style
 PATH_PDF = r'data_transformation\Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf'
 print(f'{os.path.exists(PATH_PDF)}')
 
+FOLDER_ZIP_CSV = 'Teste_beatriz.zip'
+CSV_FILE_NAME = 'rol_de_procedimentos_e_eventos_em_saude.csv'
+
 abreviations = {
-    'OD': 'Outros Departamentos',
-    'AMB': 'Ambulatório'
+    'OD': 'Seg. Ondotológica',
+    'AMB': 'Seg. Ambulatórial'
 }
 
-FOLDER_ZIP_CSV = 'Teste_beatriz.zip'
 
 def extract_data_from_pdf(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
@@ -29,7 +31,7 @@ def extract_data_from_pdf(pdf_path):
                 print(f'{Fore.YELLOW}Nenhuma tabela foi encontrada na página {i + 1}{Style.RESET_ALL}')
     return all_pages
 
-def format_to_csv(data, file_name='rol_de_procedimentos_e_eventos_em_saude.csv'):
+def format_to_csv(data, file_name=CSV_FILE_NAME):
     if not data:
         print(f'{Fore.RED}Nenhum dado extraido{Style.RESET_ALL}')
         return
@@ -40,17 +42,29 @@ def format_to_csv(data, file_name='rol_de_procedimentos_e_eventos_em_saude.csv')
     df = pd.DataFrame(rows, columns=columns)
     df.replace(abreviations, inplace=True)
 
-    df = df.dropna().applymap(lambda x: x.strip() if isinstance(x, str) else x)
-
     df.to_csv(file_name, index=False, encoding='utf-8')
-    print(f'{Fore.GREEN}Arquivo CSV salvo com sucesso!\n{Fore.MAGENTA}{file_name}{Style.RESET_ALL}')
+    print(f'{Fore.CYAN}\nArquivo CSV salvo com sucesso!\n{Fore.MAGENTA}{file_name}{Style.RESET_ALL}')
 
-def compact_csv(file, folder=FOLDER_ZIP_CSV):
+    return file_name
+
+def compact_csv(csv_file, folder_zip=FOLDER_ZIP_CSV):
+    if not os.path.exists(csv_file):
+        print(f'{Fore.RED}Erro: O arquivo CSV não foi encontrado!{Style.RESET_ALL}')
+        return
+    
+    with ZipFile(folder_zip, 'w') as zip:
+        zip.write(csv_file, os.path.basename(csv_file))
+
+    print(f'{Fore.CYAN}\nArquivo ZIP criado com sucesso!\n{Fore.MAGENTA}{folder_zip}{Style.RESET_ALL}')
 
 
 def process_transformation():
     data_extrated = extract_data_from_pdf(PATH_PDF)
-    format_to_csv(data_extrated)
-    for line in data_extrated[:5]: 
-        print(f'\n{line}\n')
+    file_csv = format_to_csv(data_extrated)
+
+    if file_csv:
+        try:
+            compact_csv(file_csv)
+        except Exception as error:
+            print(f'{Fore.RED}\nErro ao compactar: {error}{Style.RESET_ALL}')
 
