@@ -21,8 +21,8 @@ def extract_data_from_pdf(pdf_path):
     return all_pages
 
 
+def process_transformation():
+    data_extrated = extract_data_from_pdf(PATH_PDF)
+    for line in data_extrated[:5]:  # Exibe apenas as 5 primeiras linhas
+        print(f'\n{line}\n')
 
-
-data_extrated = extract_data_from_pdf(PATH_PDF)
-for line in data_extrated[:5]:  # Exibe apenas as 5 primeiras linhas
-    print(f'\n{line}\n')
