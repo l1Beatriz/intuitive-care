@@ -7,15 +7,14 @@ from colorama import Fore, Style
 
 
 PATH_PDF = r'data_transformation\Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf'
-FOLDER_ZIP_CSV = 'Teste_beatriz.zip'
 CSV_FILE_NAME = 'rol_de_procedimentos_e_eventos_em_saude.csv'
+FOLDER_ZIP_CSV = 'Teste_beatriz.zip'
 PATH_DIR = r'downloads'
 
 abreviations = {
     'OD': 'Seg. Ondotológica',
     'AMB': 'Seg. Ambulatórial'
 }
-
 
 def extract_data_from_pdf(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
@@ -65,7 +64,7 @@ def move_zip_for_downloads(zip_file, path_dir=PATH_DIR):
     path_dir_move = os.path.join(path_dir, os.path.basename(zip_file))
     shutil.move(zip_file, path_dir_move)
 
-    print(f'{Fore.CYAN}ZIP movido para: {path_dir_move}{Style.RESET_ALL}')
+    print(f'\nZIP movido para: {path_dir_move}')
 
 def process_transformation():
     data_extrated = extract_data_from_pdf(PATH_PDF)
@@ -75,7 +74,7 @@ def process_transformation():
         try:
            zip_file = compact_csv(file_csv)
            move_zip_for_downloads(zip_file)
-           
+
         except Exception as error:
             print(f'{Fore.RED}\nErro ao compactar: {error}{Style.RESET_ALL}')
 
