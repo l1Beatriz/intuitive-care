@@ -62,4 +62,4 @@ pip install -r requirements.txt
 Ao rodar o comando python `main.py`, o script irá listar as opções de módulos que você pode executar. 
 Isso permite que você escolha qual módulo deseja rodar
 
-
+![Saida Final](assets/saida.png)
