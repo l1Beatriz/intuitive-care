@@ -60,6 +60,6 @@ pip install -r requirements.txt
 ## Saida Final
 
 Ao rodar o comando python `main.py`, o script irá listar as opções de módulos que você pode executar. 
-Isso permite que você escolha qual módulo deseja rodar
+Isso permite que você escolha qual módulo deseja rodar.
 
 ![Saida Final](assets/saida.png)
