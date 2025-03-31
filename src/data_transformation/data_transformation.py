@@ -1,9 +1,10 @@
 import os
+import pandas as pd
 import pdfplumber
 from colorama import Fore, Style
 
 
-PATH_PDF = 'Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf'
+PATH_PDF = os.path.abspath('data_transformation\Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf')
 print(f'{os.path.exists(PATH_PDF)}')
 
 def extract_data_from_pdf(pdf_path):
