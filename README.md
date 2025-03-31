@@ -46,12 +46,12 @@ pip install -r requirements.txt
 
 ## Como Executar o Projeto
 
-- **Navegue até a pasta src:**
+- **Navegue até a pasta `src`:**
   
   ```bash
   cd src
   ````
-- **E no terminal execute o seguinte comando:**
+- **Execute o arquivo principal(`main.py`):**
   
   ```bash
   python main.py
