@@ -1,5 +1,6 @@
 from colorama import Fore, Style
 from scraping import scraping
+from data_transformation import data_transformation
 
 def options():
     print('\n1. Executar Scraping')
@@ -16,6 +17,7 @@ def options_run():
 
     elif input_option_run == '2':
         print(f'\n{Fore.CYAN}executando transformação de dados{Style.RESET_ALL}')
+        data_transformation.process_transformation()
 
 def main():
     options_run()
