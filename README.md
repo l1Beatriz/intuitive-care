@@ -1,4 +1,4 @@
-# Este projeto consiste em um desafio técnico onde diferentes módulos são responsáveis por:
+# Este projeto consiste em um desafio técnico onde diferentes módulos são responsáveis por diferentes funcionalidades
 
 ## Estrutura do Projeto
 
@@ -56,3 +56,10 @@ pip install -r requirements.txt
   ```bash
   python main.py
   ````
+
+## Saida Final
+
+Ao rodar o comando python `main.py`, o script irá listar as opções de módulos que você pode executar. 
+Isso permite que você escolha qual módulo deseja rodar
+
+
