@@ -13,9 +13,9 @@ def options_run():
     if input_option_run == '1':
         print(f'\n{Fore.CYAN}nexecutando scraping{Style.RESET_ALL}')
         scraping.process_downloads()
-        
+
     elif input_option_run == '2':
-        print('executando transformação de dados')
+        print(f'\n{Fore.CYAN}executando transformação de dados{Style.RESET_ALL}')
 
 def main():
     options_run()
