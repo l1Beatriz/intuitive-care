@@ -1,6 +1,7 @@
 import os
-import pandas as pd
 import pdfplumber
+import pandas as pd
+from zipfile import ZipFile
 from colorama import Fore, Style
 
 
@@ -11,6 +12,8 @@ abreviations = {
     'OD': 'Outros Departamentos',
     'AMB': 'Ambulatório'
 }
+
+FOLDER_ZIP_CSV = 'Teste_beatriz.zip'
 
 def extract_data_from_pdf(pdf_path):
     with pdfplumber.open(pdf_path) as pdf:
@@ -41,6 +44,9 @@ def format_to_csv(data, file_name='rol_de_procedimentos_e_eventos_em_saude.csv')
 
     df.to_csv(file_name, index=False, encoding='utf-8')
     print(f'{Fore.GREEN}Arquivo CSV salvo com sucesso!\n{Fore.MAGENTA}{file_name}{Style.RESET_ALL}')
+
+def compact_csv(file, folder=FOLDER_ZIP_CSV):
+
 
 def process_transformation():
     data_extrated = extract_data_from_pdf(PATH_PDF)
