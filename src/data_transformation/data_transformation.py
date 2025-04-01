@@ -7,9 +7,9 @@ from colorama import Fore, Style
 
 
 PATH_PDF = r'data_transformation\Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf'
-CSV_FILE_NAME = 'rol_de_procedimentos_e_eventos_em_saude.csv'
-FOLDER_ZIP_CSV = 'Teste_beatriz.zip'
 PATH_DIR = r'downloads'
+CSV_FILE_NAME = os.path.join(PATH_DIR, 'rol_de_procedimentos_e_eventos_em_saude.csv') 
+FOLDER_ZIP_CSV = os.path.join(PATH_DIR, 'Teste_beatriz.zip')
 
 abreviations = {
     'OD': 'Seg. Ondotológica',
@@ -35,6 +35,10 @@ def format_to_csv(data, file_name=CSV_FILE_NAME):
         print(f'{Fore.RED}Nenhum dado extraido{Style.RESET_ALL}')
         return
     
+
+    if not os.path.exists(PATH_DIR):
+        os.makedirs(PATH_DIR)
+    
     columns = data[0] if data else []
     rows = data[1:] if len(data) > 1 else []
 
@@ -57,14 +61,14 @@ def compact_csv(csv_file, folder_zip=FOLDER_ZIP_CSV):
     print(f'{Fore.CYAN}\nArquivo ZIP criado com sucesso!\n{Fore.MAGENTA}{folder_zip}{Style.RESET_ALL}')
     return folder_zip
 
-def move_zip_for_downloads(zip_file, path_dir=PATH_DIR):
-    if not os.path.exists(path_dir):
-        os.makedirs(path_dir)
+# def move_zip_for_downloads(zip_file, path_dir=PATH_DIR):
+#     if not os.path.exists(path_dir):
+#         os.makedirs(path_dir)
 
-    path_dir_move = os.path.join(path_dir, os.path.basename(zip_file))
-    shutil.move(zip_file, path_dir_move)
+#     path_dir_move = os.path.join(path_dir, os.path.basename(zip_file))
+#     shutil.move(zip_file, path_dir_move)
 
-    print(f'\nZIP movido para: {path_dir_move}')
+#     print(f'\nZIP movido para: {path_dir_move}')
 
 def process_transformation():
     data_extrated = extract_data_from_pdf(PATH_PDF)
@@ -73,7 +77,7 @@ def process_transformation():
     if file_csv:
         try:
            zip_file = compact_csv(file_csv)
-           move_zip_for_downloads(zip_file)
+           #move_zip_for_downloads(zip_file)
 
         except Exception as error:
             print(f'{Fore.RED}\nErro ao compactar: {error}{Style.RESET_ALL}')
