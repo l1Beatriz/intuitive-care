@@ -1,5 +1,6 @@
 from colorama import Fore, Style
 from scraping import scraping
+from data_transformation import data_transformation
 
 def options():
     print('\n1. Executar Scraping')
@@ -11,11 +12,12 @@ def options_run():
     input_option_run = input('\nEscolha um projeto para executar:')
 
     if input_option_run == '1':
-        print(f'\n{Fore.CYAN}nexecutando scraping{Style.RESET_ALL}')
+        print(f'\n{Fore.CYAN}Executando scraping{Style.RESET_ALL}')
         scraping.process_downloads()
-        
+
     elif input_option_run == '2':
-        print('executando transformação de dados')
+        print(f'\n{Fore.CYAN}Executando transformação de dados{Style.RESET_ALL}')
+        data_transformation.process_transformation()
 
 def main():
     options_run()
