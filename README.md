@@ -1,67 +1,88 @@
-# Este projeto consiste em um desafio técnico onde diferentes módulos são responsáveis por diferentes funcionalidades
+# Desafio Técnico - Módulos Independentes
 
-## Estrutura do Projeto
+Este projeto consiste em um desafio técnico onde diferentes módulos são responsáveis por diferentes funcionalidades.
 
-- `main.py`: Arquivo principal para gerenciar a execução dos diferentes módulos.
-- `scraping.py`: Módulo de scraping para coletar dados.
-- `transformacao.py`: Módulo para transformar os dados extraídos.
+##  Estrutura do Projeto
 
-## Como Baixar o Repositório
+```
+projeto
+├── main.py           # 📌 Arquivo principal para gerenciar a execução dos módulos
+├── scraping.py       # 📥 Módulo de scraping para coletar dados
+├── transformacao.py  # 🔄 Módulo para transformar os dados extraídos
+├── src               # 📂 Diretório principal do código-fonte
+└── requirements.txt  # 📜 Lista de dependências do projeto
+```
 
-1. **Clone o repositório para a sua máquina local**:
+---
 
-    Abra o terminal (ou prompt de comando) e digite o seguinte comando para clonar o repositório:
+##  Como Baixar o Repositório
 
-    ```bash
-    git clone https://github.com/l1Beatriz/intuitive-care.git
-    ```
+- **Clone o repositório para sua máquina local**
 
-2. **Entre no diretório do repositório clonado**:
+   Abra o terminal e execute:
+   
+   ```bash
+   git clone https://github.com/l1Beatriz/intuitive-care.git
+   ```
 
-    Após o download, entre no diretório do projeto:
+- **Acesse o diretório do projeto**
 
-    ```bash
-    cd NOME_DO_REPOSITORIO
-    ```
+   ```bash
+   cd intuitive-care
+   ```
 
-## Pré-requisitos
+---
 
-Antes de executar o projeto, certifique-se de que os seguintes pré-requisitos estão instalados:
+##  Pré-requisitos
 
-- **Python 3.6 ou superior**: Verifique a versão do Python com o comando:
+Antes de executar o projeto, certifique-se de que os seguintes requisitos estão instalados:
 
-    ```bash
-    python --version
-    ```
-
-- **Bibliotecas do Python**: O projeto depende de bibliotecas externas que estão listadas no arquivo `requirements.txt`.
-
-### Instalando as dependências
-
-Se você ainda não tiver as dependências instaladas, execute o seguinte comando para instalar todas as bibliotecas necessárias:
-
-```bash
-pip install -r requirements.txt
-````
-
-## Como Executar o Projeto
-
-- **Navegue até a pasta `src`:**
+- 🐍 **Python 3.6 ou superior**
+  
+  Verifique a versão do Python com:
   
   ```bash
-  cd src
-  ````
-- **Execute o arquivo principal(`main.py`):**
+  python --version
+  ```
+
+- 📦 **Bibliotecas do Python**
+  
+  O projeto possui dependências listadas no arquivo `requirements.txt`.
+  
+  Para instalá-las, execute:
   
   ```bash
-  python main.py
-  ````
+  pip install -r requirements.txt
+  ```
 
-## Saida Final
+---
 
-Ao rodar o comando python `main.py`, o script irá listar as opções de módulos que você pode executar. 
-Isso permite que você escolha qual módulo deseja rodar.
+##  Como Executar o Projeto
+
+1️⃣ **Acesse a pasta `src`**
+   
+   ```bash
+   cd src
+   ```
+
+2️⃣ **Execute o arquivo principal (`main.py`)**
+   
+   ```bash
+   python main.py
+   ```
+
+---
+
+##  Saída Esperada
+
+Ao executar `main.py`, será exibido um menu interativo listando os módulos disponíveis para execução. Assim, você pode escolher qual funcionalidade deseja rodar.
 
 <p align="center">
   <img src="assets/saida.png" alt="Saída Final" />
 </p>
+
+---
+
+Caso encontre problemas na execução, verifique se todas as dependências foram instaladas corretamente e se você está na pasta correta do projeto.
+
+💡 **Desenvolvido por [Beatriz](https://github.com/l1Beatriz).**
