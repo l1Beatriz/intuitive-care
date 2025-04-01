@@ -59,16 +59,7 @@ def compact_csv(csv_file, folder_zip=FOLDER_ZIP_CSV):
         zip.write(csv_file, os.path.basename(csv_file))
 
     print(f'{Fore.CYAN}\nArquivo ZIP criado com sucesso!\n{Fore.MAGENTA}{folder_zip}{Style.RESET_ALL}')
-    return folder_zip
 
-# def move_zip_for_downloads(zip_file, path_dir=PATH_DIR):
-#     if not os.path.exists(path_dir):
-#         os.makedirs(path_dir)
-
-#     path_dir_move = os.path.join(path_dir, os.path.basename(zip_file))
-#     shutil.move(zip_file, path_dir_move)
-
-#     print(f'\nZIP movido para: {path_dir_move}')
 
 def process_transformation():
     data_extrated = extract_data_from_pdf(PATH_PDF)
@@ -76,8 +67,7 @@ def process_transformation():
 
     if file_csv:
         try:
-           zip_file = compact_csv(file_csv)
-           #move_zip_for_downloads(zip_file)
+            compact_csv(file_csv)
 
         except Exception as error:
             print(f'{Fore.RED}\nErro ao compactar: {error}{Style.RESET_ALL}')
